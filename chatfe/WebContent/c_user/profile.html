@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>My Profile</title>
+
+</head>
+<body>
+<table>
+<h1>My Profile</h1><br> <br>
+<form novalidate>
+<div ng-app="myApp" ng-controller="UserController">
+Id<br><input type="text" ng-model="currentuser.id" placeholder="Enter the id"><br>
+
+Name<br><input type="text" ng-model="currentuser.name" placeholder="Enter the name"><br>
+Password<br><input type="text" ng-model="currentuser.password" placeholder="Enter the password"><br>
+Address<br><input type="text" ng-model="currentuser.address" placeholder="Enter the address"><br>
+Email<br><input type="email" ng-model="currentuser.email" placeholder="Enter the email"><br>
+Contact<br><input type="number" ng-model="currentuser.number" placeholder="Enter the contact number"><br>
+<button ng-click="update">Update</button>
+</div>
+</form>
+</table>
+</body>
+</html>

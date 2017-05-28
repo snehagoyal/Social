@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<table>
+<div ng-app="myApp" ng-controller= "UserController as ctrl">
+<form novalidate>
+
+<label>User Registration Form</label>
+<input type="radio" ng-model="ctrl.user.role" value="Student">Student
+<input type="radio" ng-model="ctrl.user.role" value="Alumni">Alumni
+<input type="radio" ng-model="ctrl.user.role" value="Employee">Employee
+<br><br>
+Firstname<br><input type="text" ng-model="ctrl.user.firstname" placeholder="Enter your firstname"><br>
+LastName<br><input type="text" ng-model="ctrl.user.lastname" placeholder="enter your lastname"><br>
+
+Password<br><input type="text" ng-model="ctrl.user.password" placeholder="enter your password"><br>
+Address<br><input type="text" ng-model="ctrl.user.address"placeholder="enter your address"><br>
+Email<br><input type="email" ng-model="ctrl.user.email" placeholder="enter your email"><br>
+Contact No.<br><input type="number" ng-model="ctrl.user.number" placeholder="enter your contact number"><br>
+<br>
+
+<button ng-click="submit">Submit</button>
+<button ng-click="reset"> Reset </button>
+</form>
+</div>
+</table>
