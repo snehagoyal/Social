@@ -1,26 +1,28 @@
 /**
  * 
  */
+'use strict';
 app.controller('UserController',[
                                  '$scope',
                                  'UserService',
                                  '$location',
-                                 '$rootscope',
+                                 '$rootScope',
                                  '$http',
-                                 '$cookieStore',
-                                function($scope, UserService, $location, $rootscope, $cookieStore, $http){
+                                 
+                                function($scope, UserService, $location, $rootScope,$http){
                                 	 console.log("start the user controller");
                                      var self= this;
                                      self.user = {
-                                    		 id:'',
-                                    	firstname: '' ,
-                                    	lastname: '',
-                                     	email: '' ,
-                                     	address: '',
-                                     	password: '',
-                                     	errorCode:'',
-                                     	errorMessage:'',
-                                     	contactNo:''
+                                    		 u_id:'',
+                                    	u_firstname: '' ,
+                                    	u_lastname: '',
+                                     	u_email: '' ,
+                                     	u_address: '',
+                             
+                                     	u_contact:'',
+                                     	u_accountstatus:'',
+                                     	u_approvestatus:'',
+                                     	is_online:''
                                      	 }
                                      
                                      self.users = [];
@@ -50,32 +52,19 @@ app.controller('UserController',[
                                  			});
                                  	};
 
-                                     self.submit = function() {
+                                     self.submit = function() 
                          				{
                          					console.log('Saving new user', self.user);
                          					self.createUser(self.user);
-                         				}
-                         				this.reset();
-                         			};
+                         				};
+                         				//this.reset();
                          			
-                         			this.reset=function(){ 
-                         				self.user = {
-                                   		 id:'',
-                                     	firstname: '' ,
-                                     	lastname: '',
-                                      	email: '' ,
-                                      	address: '',
-                                      	password: '',
-                                      	errorCode:'',
-                                      	errorMessage:'',
-                                      	contactNo:''
-                                      	 }
+                         			
                                      
                          		
-                         				$scope.myForm.$setPristine(); // reset Form
+                         				//$scope.myForm.$setPristine(); // reset Form
         						
-                         			};
-                         			
+                         			                         			
 
 
                          			

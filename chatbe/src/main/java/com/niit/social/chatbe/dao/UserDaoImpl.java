@@ -25,6 +25,7 @@ public class UserDaoImpl implements UserDao{
 public boolean addUser(User u) {
 	try{
 		log.debug("Adduser");
+		u.setU_id(u.getU_email());
 		Session s= sessionFactory.getCurrentSession();
 		s.save(u);
 		log.debug("user added successfully");
@@ -39,5 +40,6 @@ public boolean addUser(User u) {
 	
 }
 }
+
 
 

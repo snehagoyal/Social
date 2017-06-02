@@ -1,25 +1,35 @@
 <!DOCTYPE html>
+<html >
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
 
-<table>
-<div ng-app="myApp" ng-controller= "UserController as ctrl">
-<form novalidate>
+</head>
+<body>
+<div ng-app="myApp" ng-controller= "UserController as ctrl" class="ng-scope">
+<form data-ng-submit="ctrl.submit()" method="post">
+
+
 
 <label>User Registration Form</label>
-<input type="radio" ng-model="ctrl.user.role" value="Student">Student
-<input type="radio" ng-model="ctrl.user.role" value="Alumni">Alumni
-<input type="radio" ng-model="ctrl.user.role" value="Employee">Employee
+<input type="radio" data-ng-model="ctrl.user.u_userRole" value="Student">Student
+<input type="radio" data-ng-model="ctrl.user.u_userRole" value="Alumni">Alumni
+<input type="radio" data-ng-model="ctrl.user.u_userRole" value="Employee">Employee
 <br><br>
-Firstname<br><input type="text" ng-model="ctrl.user.firstname" placeholder="Enter your firstname"><br>
-LastName<br><input type="text" ng-model="ctrl.user.lastname" placeholder="enter your lastname"><br>
+Firstname<input type="text" data-ng-model="ctrl.user.u_firstname" placeholder="Enter your firstname"><br>
+LastName<input type="text" data-ng-model="ctrl.user.u_lastname" placeholder="enter your lastname"><br>
 
-Password<br><input type="text" ng-model="ctrl.user.password" placeholder="enter your password"><br>
-Address<br><input type="text" ng-model="ctrl.user.address"placeholder="enter your address"><br>
-Email<br><input type="email" ng-model="ctrl.user.email" placeholder="enter your email"><br>
-Contact No.<br><input type="number" ng-model="ctrl.user.number" placeholder="enter your contact number"><br>
+Password<input type="text" data-ng-model="ctrl.user.u_password" placeholder="enter your password"><br>
+Address<input type="text" data-ng-model="ctrl.user.u_address"placeholder="enter your address"><br>
+Email<input type="email" data-ng-model="ctrl.user.u_email" placeholder="enter your email"><br>
+Contact No.<input type="number" data-ng-model="ctrl.user.u_contact" placeholder="enter your contact number"><br>
 <br>
+<input type="submit" value="sign up">
 
-<button ng-click="submit">Submit</button>
-<button ng-click="reset"> Reset </button>
+
+
 </form>
 </div>
-</table>
+</body>
+
+</html>

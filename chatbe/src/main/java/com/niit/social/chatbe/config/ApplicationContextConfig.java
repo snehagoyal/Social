@@ -10,8 +10,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate3.HibernateTransactionManager;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.niit.social.chatbe.model.User;
@@ -23,7 +23,7 @@ public class ApplicationContextConfig {
 	 @Bean(name ="dataSource")
 	    public DataSource getdataSource() {
 	        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-	        dataSource.setDriverClassName("org.oracle.Driver");
+	        dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
 	       
 	        dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
 	        dataSource.setUsername("social");

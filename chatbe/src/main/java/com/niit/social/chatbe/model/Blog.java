@@ -3,6 +3,7 @@ package com.niit.social.chatbe.model;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.br.CNPJ;

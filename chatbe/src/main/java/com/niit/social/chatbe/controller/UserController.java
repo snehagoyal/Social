@@ -19,12 +19,21 @@ public class UserController {
 	@Autowired
 	UserDao userDao;
 	
+	@RequestMapping(value="/hello" , method= RequestMethod.POST)
+	public String test(){
+		System.out.println("test");
+		return "test";
+	}
 	
 	
-	@RequestMapping(value="/createUser/",method=RequestMethod.POST)
+	@RequestMapping(value="/enterUser/",method=RequestMethod.POST)
 	public ResponseEntity<User> addUser(@RequestBody User u)
 	{
 		logger.debug("trying to add User....");
+		u.setIs_online('O');
+		u.setU_accountstatus('1');
+		u.setU_approvestatus('P');
+		
 		userDao.addUser(u);
 	 return new ResponseEntity<User>(u,HttpStatus.OK);
 

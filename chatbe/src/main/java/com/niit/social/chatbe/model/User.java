@@ -6,42 +6,51 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Pattern;
+import javax.persistence.Table;
+
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
+@Table(name="c_user")
 @Entity
 public class User{
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
-	private int u_id;
+	//@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	private String u_id;
 	
-	@NotBlank(message= "Enter your firstname please ")
+	//@NotBlank(message= "Enter your firstname please ")
 	private String u_firstname;
 	
-	@NotBlank(message="please enter your last name")
+	//@NotBlank(message="please enter your last name")
 	private String u_lastname;
-	@NotBlank(message="please enter your valid password")
-	@Length(min=5, message= "password should have minimum 5 characters ")
-	private String password;
+	//@NotBlank(message="please enter your valid password")
+	//@Length(min=5, message= "password should have minimum 5 characters ")
+	private String u_password;
 	
+	public String getU_password() {
+		return u_password;
+	}
+	public void setU_password(String u_password) {
+		this.u_password = u_password;
+	}
 	@NotBlank(message="please enter your contact no.")
-	@Pattern(regexp="(^$|[0-9]{10})",message="Enter a 10 digit valid phone no")
-	private String u_contact;
+//	@Pattern(regexp="(^$|[0-9]{10})",message="Enter a 10 digit valid phone no")
+	private long u_contact;
 	
 	
-	@NotBlank(message="please enter your email")
-	@Email(message= "please enter an email")
+	//@NotBlank(message="please enter your email")
+	//@Email(message= "please enter an email")
 	private String u_email;
 	private String u_address;
+	//1=Active 0=non-active
 	private char u_accountstatus;
-	public int getU_id() {
+	public String getU_id() {
 		return u_id;
 	}
-	public void setU_id(int u_id) {
+	public void setU_id(String u_id) {
 		this.u_id = u_id;
 	}
 	public String getU_firstname() {
@@ -56,16 +65,10 @@ public class User{
 	public void setU_lastname(String u_lastname) {
 		this.u_lastname = u_lastname;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getU_contact() {
+	public long getU_contact() {
 		return u_contact;
 	}
-	public void setU_contact(String u_contact) {
+	public void setU_contact(long u_contact) {
 		this.u_contact = u_contact;
 	}
 	public String getU_email() {
@@ -104,6 +107,7 @@ public class User{
 	public void setU_userRole(String u_userRole) {
 		this.u_userRole = u_userRole;
 	}
+	//p=pending r= reject, a= approve
 	private char u_approvestatus;
 	private char is_online;
 	private String u_userRole;

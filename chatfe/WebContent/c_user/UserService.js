@@ -1,6 +1,7 @@
 /**
  * 
  */
+'use strict';
 app.factory('UserService',[
            '$http',
            '$q',
@@ -22,9 +23,9 @@ app.factory('UserService',[
         			 },
         			 
         	  
-        	   createUser: function(){
+        	   createUser: function(user){
         		   console.log("register");
-        		   return $http.get(BASE_URL+'/createUser/',user)
+        		   return $http.post(BASE_URL+'/enterUser/',user)
         				          		   
         		   .then(
         				   function (response){
