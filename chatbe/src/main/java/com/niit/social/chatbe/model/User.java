@@ -36,7 +36,7 @@ public class User{
 	public void setU_password(String u_password) {
 		this.u_password = u_password;
 	}
-	@NotBlank(message="please enter your contact no.")
+	//@NotBlank(message="please enter your contact no.")
 //	@Pattern(regexp="(^$|[0-9]{10})",message="Enter a 10 digit valid phone no")
 	private long u_contact;
 	

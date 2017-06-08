@@ -18,7 +18,7 @@ app.controller('UserController',[
                                     	u_lastname: '',
                                      	u_email: '' ,
                                      	u_address: '',
-                             
+                                     	u_userRole:'',
                                      	u_contact:'',
                                      	u_accountstatus:'',
                                      	u_approvestatus:'',
@@ -48,7 +48,7 @@ app.controller('UserController',[
                                  			},
                   
                                  					function(errResponse){
-                                 				console.error('Error While Creating New User.');
+                                 				console.error('(console.error)Error While Creating New User.');
                                  			});
                                  	};
 

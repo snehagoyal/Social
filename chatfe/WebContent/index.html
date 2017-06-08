@@ -10,7 +10,7 @@
      <script type="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></script> 
       <!-- load angular and angular route via CDN -->
       
-     <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script>-->
+     <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script> --> 
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script>
       <script src="app.js"></script>
@@ -108,14 +108,16 @@
   </div>
 </div>
 
-<a href="#register"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+<a href="#register"><span class="glyphicon glyphicon-user"></span> Sign Up</a><br>
 
+<a href="#blog"><span class="glyphicon glyphicon-user"></span> blog</a>
   <div class ="container">
   
   </div>
   
   <div ng-view></div>
- 
+<script type="text/javascript" src="c_blog/BlogController.js"></script>
+<script type="text/javascript" src="c_blog/BlogService.js"></script>
   <script src ="c_user/UserController.js"></script>
 <script src ="c_user/UserService.js"></script>
 </body>

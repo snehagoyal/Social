@@ -1,3 +1,4 @@
+
 package com.niit.social.chatbe.controller;
 
 import org.slf4j.Logger;
@@ -35,7 +36,7 @@ public class UserController {
 		u.setU_approvestatus('P');
 		
 		userDao.addUser(u);
-	 return new ResponseEntity<User>(u,HttpStatus.OK);
+	 return new ResponseEntity<User>(HttpStatus.OK);
 
 	}
 }

@@ -13,7 +13,7 @@ app.factory('UserService',[
         		   
         		   fetchAllUsers: function(){
         			   console.log("fetch all users");
-        			   return $http.get(BASE_URL+'ListAllUsersNotFriends')
+        			   return $http.post(BASE_URL+'ListAllUsersNotFriends')
         			   .then(
         					   function( response){
         						   return response.data;

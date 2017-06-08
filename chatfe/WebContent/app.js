@@ -6,11 +6,11 @@ var app = angular.module("myApp",["ngRoute"]);
 app.config(function($routeProvider){
 	$routeProvider
 	
-	/*.when('/',{
-		templateUrl : 'c_home/home.html',
-		controller : 'HomeController'
+	.when('/blog',{
+		templateUrl : 'c_blog/blog.html',
+		controller : 'BlogController'
 	})
-	*/
+
 	.when('/register',{
 	
 		templateUrl : 'c_user/register.html',
