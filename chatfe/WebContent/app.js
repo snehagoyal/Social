@@ -19,5 +19,19 @@ app.config(function($routeProvider){
 		
 	})
 	
+	.when('/login',{
+		
+		templateUrl : 'c_user/login.html',
+		controller  : 'UserController'
+		
+		
+	})
+	.when('/manageUsers',{
+		
+		templateUrl : 'c_user/manageUsers.html',
+		controller  : 'AdminController'
+		
+		
+	})
 	
 })

@@ -15,7 +15,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 @Table(name="c_user")
 @Entity
-public class User{
+public class User extends basedomain{
 
 	@Id
 	//@GeneratedValue(strategy=GenerationType.SEQUENCE)

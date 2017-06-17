@@ -1,4 +1,4 @@
-/**
+  /**
  * 
  */
 'use strict';
@@ -27,7 +27,7 @@ app.controller('UserController',[
                                      
                                      self.users = [];
                                      
-                                    /* self.fetchAllUsers = function(){
+                                  /*   self.fetchAllUsers = function(){
                                   		console.log("Fetch user");
                                   		UserService.fetchAllUsers()
                                   			.then(function(d){
@@ -38,8 +38,8 @@ app.controller('UserController',[
                                   			});
                                   	};
                                       
-                                  	self.fetchAllUsers();
-                                 	*/
+                                  	self.fetchAllUsers();*/
+                                 	
                                  	self.createUser = function(user){
                                  		console.log("Create a new User");
                                  		UserService.createUser(user)
@@ -51,6 +51,24 @@ app.controller('UserController',[
                                  				console.error('(console.error)Error While Creating New User.');
                                  			});
                                  	};
+                                 	self.authenticate= function (user){
+                                 		console.log("login started");
+                                 		UserService.authenticate(user)
+                                 	.then (function(d)
+                                 		{
+                                 		self.user= d;
+                                 			},
+                                 			function(errResponse){
+                                 				console.error("error doing login user");
+                                 			}
+                                 	)
+                                 	}
+                                 	 self.login = function() 
+                      				{
+                      					console.log('login  user', self.user);
+                      					self.authenticate(self.user);
+                      				};
+                      			
 
                                      self.submit = function() 
                          				{
@@ -63,15 +81,4 @@ app.controller('UserController',[
                                      
                          		
                          				//$scope.myForm.$setPristine(); // reset Form
-        						
-                         			                         			
-
-
-                         			
-
-                                 	
-                                 	
-                                 	        
-                                			
-                                 	
-                                 }])
+        						 }])

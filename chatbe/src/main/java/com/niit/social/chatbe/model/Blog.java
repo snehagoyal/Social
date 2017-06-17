@@ -12,7 +12,7 @@ import org.hibernate.validator.constraints.br.CNPJ;
 
 @Table(name="c_blog")
 @Entity
-public class Blog {
+public class Blog extends basedomain {
 
 @Id
 	private String b_id;
