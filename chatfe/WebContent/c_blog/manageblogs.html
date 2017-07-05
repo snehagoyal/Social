@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="container">
+	<div class="modal-content" ng-app="myApp" ng-controller="AdminController as ctrl">
+		<div class="modal-header">
+		<div class="modal-title col-sm-6">
+			<h4>LIST OF Pending Blogs to be Approved</h4>
+		</div>
+		
+        
+      	</div>
+      <div class="modal-body">
+       	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Title</th>
+				<th>Description</th>
+				<!-- <th>User Role</th> -->
+				<th colspan="2"><center>OPTIONS</center></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td width="100%" colspan="6" data-ng-show="!ctrl.pendingBlogs">Sorry..!! No New User Request Found.</td>
+			</tr>
+			<tr data-ng-repeat="blogs in ctrl.pendingBlogs ">
+			
+				<td width="10%">{{blog.b_id}}</td>
+
+				<td width="15%">{{blog.b_title}}</td>
+
+				<td width="30%">{{blog.b_desc}}</td>
+			
+				<td width="10%">
+					<button class="btn btn-success btn-block" data-ng-click="ctrl.Selectedapproveblog(blog.b_id,'A')" onclick="return confirm('Are You Sure Want to Accept this??');">ACCEPT</button>
+				</td>
+				<td width="10%">
+					<button class="btn btn-danger btn-block" data-ng-click="ctrl.Selectedapproveblog(blog.b_id,'R')" onclick="return confirm('Are You Sure Want to Reject this??');">Reject</button>
+				</td>
+				
+			</tr>
+
+		</tbody>
+
+	</table>
+      </div>
+     
+	</div>
+</div>
+
+
+
+</body>
+</html>

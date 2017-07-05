@@ -9,11 +9,12 @@ app.factory('UserService',[
            function($http,$q,$rootScope){
         	   console.log("User Service");
         	   var BASE_URL='http://localhost:8169/chatbe'
+        		   
         		   return{
         		   
         		   fetchAllUsers: function(){
         			   console.log("fetch all users");
-        			   return $http.post(BASE_URL+'/ListAllUsers/')
+        			   return $http.get(BASE_URL+'/ListAllUsers/')
         			   .then(
         					   function( response){
         						   return response.data;
@@ -53,22 +54,10 @@ app.factory('UserService',[
 			   				});
         	   },
         	   
-        		   fetchAllPendingBlogs:function(){
-        			   console.log("Blogs not approved");
-        			   return $http.post(BASE_URL+'/PendingBlogs/') 
-        			   .then(
-        					   function(response){
-        						   return response.data;
-        					   },
-        					   function(errResponse){
-   			   					console.error('Error While Creating Blog');
-   			   					return $q.reject(errResponse);
-   			   				});
-           	   },
         					  
            	fetchAllPendingUsers:function(){
            		console.log("user not approved");
-           		return $http.post(BASE_URL+'/PendingUsers/')
+           		return $http.get(BASE_URL+'/PendingUsers/')
            		.then(
            				function(response){
            					return response.data;

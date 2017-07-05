@@ -27,7 +27,7 @@ public class UserDaoImpl implements UserDao{
 public boolean addUser(User u) {
 	try{
 		log.debug("Adduser");
-		u.setU_id(u.getU_email());
+		u.setU_id(u.getU_firstname());
 		Session s= sessionFactory.getCurrentSession();
 		s.save(u);
 		log.debug("user added successfully");
@@ -42,10 +42,13 @@ public boolean addUser(User u) {
 
 public User isValidUser(String u_email, String u_password) {
 	try{
-		return	(User) sessionFactory.getCurrentSession().createQuery("from User where email='"+u_email+"' and password='"+ u_password+"' and approveStatus='A' and accountStatus='1'").uniqueResult();	
+		System.out.println("In try");
+		return	(User) sessionFactory.getCurrentSession().createQuery("from User where u_email='"+u_email+"' and u_password='"+ u_password+"' and u_approveStatus='A' and u_accountStatus='1'").uniqueResult();	
 		}
 		catch(HibernateException h)
 		{
+			System.out.println("In catch");
+
 			log.error("error occured during user validation...");
 		h.printStackTrace();
 		return null;
@@ -56,22 +59,19 @@ public List<User>getAllUsers(){
 	return	sessionFactory.getCurrentSession().createQuery("from User ").list();	
 
 }
-/*public List<User>getForAproval(){
-	return sessionFactory.getCurrentSession().createQuery("from User").list();
-}*/
 
-public boolean approveUser( String id, String status) {
+public boolean approveUser( String u_id, String u_approvestatus) {
 	char accountStatus;
 	try{
 		System.out.println("in approve dao");
-		if(status.equals("A")){
+		if(u_approvestatus.equals("A")){
 			accountStatus = '1';
 		}else{
 			accountStatus = '0';
 		}
 		log.debug("try to aPProve user");
 	Session s=sessionFactory.getCurrentSession();
-	s.createQuery("Update User Set approveStatus='"+status + "',accountStatus='"+accountStatus+"' where id='"+id + "'").executeUpdate();
+	s.createQuery("Update User Set u_approveStatus='"+u_approvestatus + "',u_accountStatus='"+accountStatus+"' where u_id='"+u_id + "'").executeUpdate();
 	log.debug("user approved successfully");
 	return true;
 	}
@@ -83,11 +83,11 @@ public boolean approveUser( String id, String status) {
 	return false;
 	}	}
 
-public boolean setOnLine(String id) {
+public boolean setOnLine(String u_id) {
 	try{
 		log.debug("try set online .....");
 	Session s=sessionFactory.getCurrentSession();
-	s.createQuery("Update User Set is_Online='O' where id='"+id + "'").executeUpdate();
+	s.createQuery("Update User Set is_Online='O' where id='"+u_id + "'").executeUpdate();
 	log.debug("user is online ");
 	return true;
 	}
@@ -101,7 +101,7 @@ public boolean setOnLine(String id) {
 
 public List<User> getForApproval() {
 	
-	return sessionFactory.getCurrentSession().createQuery("from User").list();
+	return sessionFactory.getCurrentSession().createQuery("from User where u_approvestatus= 'P'").list();
 
 }
 

@@ -10,8 +10,24 @@ app.factory('BlogService',[
         	   console.log("Blog Service");
         	   var BASE_URL='http://localhost:8169/chatbe'
         		   return{
+        		 
+        		   fetchAllPendingBlogs: function(){
+        			   return $http.get(BASE_URL+'/PendingBlogList/')
+        			   		.then(
+        			   				
+        			   				function(response){
+        			   					return response.data;
+        			   				},
+        			   				function(errResponse){
+        			   					console.error('Error While Fatching Pending BlogList.');
+        			   					return $q.reject(errResponse);
+        			   				}
+        			   		);
+        			   
+        		   },
         		   
-        	/*	   fetchAllBlogs: function(){
+        		   
+        		   fetchAllBlogs: function(){
         			   console.log("fetch all users");
         			   return $http.post(BASE_URL+'ListAllUsersNotFriends')
         			   .then(
@@ -20,7 +36,7 @@ app.factory('BlogService',[
         					   },
         					   null
         					   );
-        			 },*/
+        			 },
         			 
         	  
         	   createBlog: function(blog){

@@ -30,7 +30,8 @@ app.controller('AdminController',[
     	
   	self.fetchAllPendingBlogs = function()
     	{
-    		UserService.fetchAllPendingBlogs()
+  		console.log("pending blogs");
+    		BlogService.fetchAllPendingBlogs()
     			.then(
     					function(d){
     						self.pendingBlogs = d;
@@ -55,11 +56,11 @@ app.controller('AdminController',[
     	self.fetchAllPendingUsers();
     	self.fetchAllPendingBlogs();
     	
-self.SelectedapproveBlog = approveBlog
+
     	
-    	function approveBlog(blogId,status){
-    		console.log("->->approveBlog Blog with ID :-"+blogId+" "+status);
-    		AdminService.approveBlog(blogId,status)
+self.SelectedapproveBlog =	function (b_id,b_approvestatus){
+    		console.log("->->approveBlog Blog with ID :-"+blogId+" "+b_approvestatus);
+    		AdminService.approveBlog(b_id,b_approvestatus)
     			.then(
     					self.fetchAllPendingBlogs,
     					function(errResponse){
@@ -67,16 +68,17 @@ self.SelectedapproveBlog = approveBlog
     					});
     	};
     	
-self.SelectedapproveUser = approveUser
     	
-    	function approveUser(userId,status){
-    		console.log("->->approveUser User with ID :-"+userId+" "+status);
-    		AdminService.approveUser(userId,status)
+self.SelectedapproveUser = function(u_id, u_approvestatus){
+    		console.log("->->approveUser User with ID :-"+u_id+" "+u_approvestatus);
+    		AdminService.SelectedapproveUser(u_id, u_approvestatus)
     			.then(
     					self.fetchAllPendingUsers,
     					function(errResponse){
     						console.error('Error While approve Users.');
     					});
     	};
+    	
+
 
 }]);

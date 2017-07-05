@@ -10,6 +10,10 @@ app.config(function($routeProvider){
 		templateUrl : 'c_blog/blog.html',
 		controller : 'BlogController'
 	})
+.when('/showblog',{
+		templateUrl : 'c_blog/showblog.html',
+		controller : 'BlogController'
+	})
 
 	.when('/register',{
 	
@@ -17,7 +21,11 @@ app.config(function($routeProvider){
 		controller  : 'UserController'
 		
 		
+	}).when('/event',{
+		templateUrl : 'c_event/event.html',
+		controller : 'EventController'
 	})
+
 	
 	.when('/login',{
 		
@@ -31,6 +39,19 @@ app.config(function($routeProvider){
 		templateUrl : 'c_user/manageUsers.html',
 		controller  : 'AdminController'
 		
+		
+	})
+	.when('/manageblogs',{
+		
+		templateUrl : 'c_blog/manageblogs.html',
+		controller  : 'AdminController'
+		
+		
+	})
+	
+	.when('/job',{
+		templateUrl : 'c_job/job.html',
+		controller  : 'JobController'
 		
 	})
 	

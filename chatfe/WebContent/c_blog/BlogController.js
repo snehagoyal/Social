@@ -21,20 +21,8 @@ app.controller('BlogController',[
                                      
                                      self.blogs = [];
                                      
-                                    /* self.fetchAllUsers = function(){
-                                  		console.log("Fetch user");
-                                  		UserService.fetchAllUsers()
-                                  			.then(function(d){
-                                  				self.users = d;
-                                  			},
-                                  			function(errResponse){
-                                  				console.error('Error occured during  fetching Users');
-                                  			});
-                                  	};
-                                      
-                                  	self.fetchAllUsers();
-                                 	*/
-                                 	self.createBlog = function(blog){
+                                     
+                                  	self.createBlog = function(blog){
                                  		console.log("Create a new blog");
                                  		BlogService.createBlog(blog)
                                  			.then(function(d){

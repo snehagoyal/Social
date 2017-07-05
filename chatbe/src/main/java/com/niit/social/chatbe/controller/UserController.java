@@ -26,8 +26,8 @@ public class UserController {
 	@Autowired
 	UserDao userDao;
 	
-	@RequestMapping(value="/hello" , method= RequestMethod.POST)
-	public String test(){
+	@RequestMapping(value="/hello1" , method= RequestMethod.POST)
+	public String test1(){
 		System.out.println("test");
 		return "test";
 	}
@@ -71,6 +71,7 @@ public class UserController {
 	}
 	@RequestMapping(value="/userlogin/",method=RequestMethod.POST)
 	public ResponseEntity<User>login(@RequestBody User u, HttpSession session){
+		System.out.println("in authorization");
 		log.debug("trying to login");
 User user;
 user = userDao.isValidUser(u.getU_email(), u.getU_password());
@@ -84,14 +85,14 @@ if(user != null){
 }else{
 	user = new User();
 	user.setErrorCode("404");
-	user.setErrorMessage("Invaid Credentials...!!!Please Enter Valid Username OR Password.");
+	user.setErrorCode("Invaid Credentials...!!!Please Enter Valid Username OR Password.");
 }
 return new ResponseEntity<User>(user , HttpStatus.OK);
 }		
 
-	@RequestMapping(value = "/ApproveUser/{id}/{status}", method = RequestMethod.POST)
-	public ResponseEntity<User> approveUser(@PathVariable("id") String id,@PathVariable("status") String status){
-		log.debug("**********Starting of Method approveUser WITH USER_ID :-**********" + id);
+	@RequestMapping(value = "/ApproveUser/{u_id}/{u_approvestatus}", method = RequestMethod.GET)
+	public ResponseEntity<User> approveUser(@PathVariable("u_id") String u_id,@PathVariable("u_approvestatus") String u_approvestatus){
+		log.debug("**********Starting of Method approveUser WITH USER_ID :-**********" + u_id);
 		System.out.println("try to approve user");
 /*			UserDetail user = userDetailDao.userGetById(userId);
 		if(user == null){
@@ -102,8 +103,8 @@ return new ResponseEntity<User>(user , HttpStatus.OK);
 			return new ResponseEntity<UserDetail>(user , HttpStatus.NOT_FOUND);
 		}else{
 			user.setUserId(userId);*/
-			userDao.approveUser(id, status);
-			log.debug("**********Blog Approved Successfully WITH ID:- "+id+"**********");
+			userDao.approveUser(u_id, u_approvestatus);
+			log.debug("**********User Approved Successfully WITH ID:- "+u_id+"**********");
 			return new ResponseEntity<User>(HttpStatus.OK);
 	//	}
 	}

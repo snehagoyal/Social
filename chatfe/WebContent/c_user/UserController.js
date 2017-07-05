@@ -2,8 +2,7 @@
  * 
  */
 'use strict';
-app.controller('UserController',[
-                                 '$scope',
+app.controller('UserController',['$scope',
                                  'UserService',
                                  '$location',
                                  '$rootScope',
@@ -66,7 +65,8 @@ app.controller('UserController',[
                                  	 self.login = function() 
                       				{
                       					console.log('login  user', self.user);
-                      					self.authenticate(self.user);
+
+                      					sself.authenticate(self.user);
                       				};
                       			
 

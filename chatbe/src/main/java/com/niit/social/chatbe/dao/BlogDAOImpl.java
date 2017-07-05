@@ -1,6 +1,10 @@
 package com.niit.social.chatbe.dao;
 
+import java.util.List;
+
 import org.hibernate.Hibernate;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -19,6 +23,7 @@ public class BlogDAOImpl implements BlogDAO {
 @Autowired
 private SessionFactory sessionFactory;
  
+@Transactional
 public boolean addBlog(Blog b){
 	try{
 	log.debug("method working");
@@ -33,5 +38,83 @@ public boolean addBlog(Blog b){
 		return false;
 	}
 }
+
+/*@Transactional
+public boolean bloglikes(String b_id) {
+	try {
+		log.debug("Starting Method forumlikes.");
+			sessionFactory.getCurrentSession().createQuery("Update Blog set b_Like = b_Like+1 where b_id = '"+b_id+"'").executeUpdate();
+		log.debug("Blog removed with Id:-"+b_id);
+		log.debug("Ending Method forumlikes.");
+		return true;
+	} catch (HibernateException e) {
+		log.error("Error Occured in forumlikes with (b_id = '"+b_id+"') "+e.getMessage());
+		e.printStackTrace();
+		return false;
+	}
+}
+
+@Transactional
+public boolean blogdislikes(String b_id) {
+	try {
+		log.debug("Starting Method forumdislikes.");
+			sessionFactory.getCurrentSession().createQuery("Update Blog set blogDislike = blogDislike+1 where b_id = '"+b_id+"'").executeUpdate();
+		log.debug("Blog removed with Id:-"+b_id);
+		log.debug("Ending Method forumdislikes.");
+		return true;
+	} catch (HibernateException e) {
+		log.error("Error Occured in forumdislikes with (id = '"+b_id+"') "+e.getMessage());
+		e.printStackTrace();
+		return false;
+	}
+}*/
+public Blog getBlogById(String b_id, String b_status) {
+	try {
+		log.debug("Staring of Method getBlogById with blogId :- "+b_id);
+		Query query = sessionFactory.getCurrentSession().createQuery("FROM Blog WHERE b_id = '"+b_id+"' AND b_status = '"+b_status+"'");
+		@SuppressWarnings("unchecked")
+		List<Blog> blogList = query.list();
+		if(blogList != null && !blogList.isEmpty()){
+			log.debug("Record Found in method getBlogById with id ="+b_id);
+			return blogList.get(0);
+		}else{
+			log.debug("No Record Found in getBlogById with id ="+b_id);
+			return null;
+		}
+} catch (HibernateException e) {
+	log.error("Error Occures in getBlogById Method..!! (b_id = '"+b_id+"')");
+	e.printStackTrace();
+	return null;
+}
+
+}
+
+public boolean approveBlog(String b_id, String b_approvestatus) {
+	char b_status;
+	try{
+		System.out.println(" approve dao");
+		if(b_approvestatus.equals("A")){
+			b_status = '1';
+		}else{
+			b_status = '0';
+		}
+		log.debug("try to aPProve blog");
+	Session s=sessionFactory.getCurrentSession();
+	s.createQuery("Update Blog Set b_approveStatus='"+b_approvestatus + "',b_status='"+b_status+"' where b_id='"+b_id + "'").executeUpdate();
+	log.debug("blog approved successfully");
+	return true;
+	}
+	catch(HibernateException h)
+	{
+		
+		System.out.println("in catch");
+		log.error("error during blog approval");
+	h.printStackTrace();
+	return false;
+	}	}
+
+
+
+
  
 }
