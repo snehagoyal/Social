@@ -10,30 +10,49 @@ app.controller('EventController',[
                                  '$http',
                                  
                                 function($scope, EventService, $location, $rootScope,$http){
-                                	 console.log("start the eventcontroller");
+                                	 console.log("start the event controller");
                                      var self= this;
                                      self.event = {
-                                    e_id:'',
-                                    e_title:'',
-                                    e_desc:''
+                                             e_id:'',
+                                             e_title:'',
+                                             e_desc:''
+                                              
+                                              };
+                                              
+                                              self.events = [];
+                                                   
+                                  	self.addEvent = function(blog){
+                                 		console.log("Create a new event");
+                                 		EventService.addevent(event)
+                                 			.then(function(d){
+                                 				self.event = d;
+                                 			},
+                  
+                                 					function(errResponse){
+                                 				console.error('(console.error)Error While Creating New event.');
+                                 			});
+                                 	};
+
+                                     self.submit = function() 
+                         				{
+                         					console.log('Saving new event', self.event);
+                         					self.addevent(self.event);
+                         				};
+                         				//this.reset();
+                         			
+                         			
                                      
-                                     };
-                                     
-                                     self.events = [];
-                                     
-                                     self.addevent = function(event){
-                                    	 console.log("Add event");
-                                    	 EventService.addevent(event)
-                                    	 .then(function(d){
-                                    		 self.event= d;
-                                    	 },
-                                    	 function(errResponse){
-                                    		console.error("error doing adding event"); 
-                                    	 }
-                                    	 )
-                                     },
-                                     self.submit = function(){
-                                    	 console.log("saving event",self.event);
-                                    	 self.addevent(self.event);
-                                     }
-}])
+                         		
+                         				//$scope.myForm.$setPristine(); // reset Form
+        						
+                         			                         			
+
+
+                         			
+
+                                 	
+                                 	
+                                 	        
+                                			
+                                 	
+                                 }])

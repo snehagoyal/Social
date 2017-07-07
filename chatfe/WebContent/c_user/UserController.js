@@ -13,9 +13,8 @@ app.controller('UserController',['$scope',
                                      var self= this;
                                      self.user = {
                                     		 u_id:'',
-                                    	u_firstname: '' ,
-                                    	u_lastname: '',
-                                     	u_email: '' ,
+                                    	u_name: '' ,
+                                    	u_email: '' ,
                                      	u_address: '',
                                      	u_userRole:'',
                                      	u_contact:'',

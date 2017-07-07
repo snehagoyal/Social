@@ -22,7 +22,15 @@ private String b_ModifiedAt;
 private int b_dislike;
 private String b_CreatedAt;
 private int b_like;
+private String u_name;
 
+
+	public String getU_name() {
+	return u_name;
+}
+	public void setU_name(String u_name) {
+		this.u_name = u_name;
+	}
 	public String getB_id() {
 	return b_id;
 }
@@ -40,12 +48,6 @@ public String getB_desc() {
 }
 public void setB_desc(String b_desc) {
 	this.b_desc = b_desc;
-}
-public Date getDateTime() {
-	return dateTime;
-}
-public void setDateTime(Date dateTime) {
-	this.dateTime = dateTime;
 }
 public char getB_status() {
 	return b_status;
@@ -88,9 +90,6 @@ public void setB_status(char b_status) {
 	public void setB_like(int b_like) {
 		this.b_like = b_like;
 	}
-	@Transient
-	@Column(name=" Date_time")
-	private Date dateTime;
 	
 private char b_status;
 	

@@ -1,3 +1,4 @@
+
 package com.niit.social.chatbe.dao;
 
 import java.util.List;
@@ -112,6 +113,27 @@ public boolean approveBlog(String b_id, String b_approvestatus) {
 	h.printStackTrace();
 	return false;
 	}	}
+
+
+	@Transactional
+	public List<Blog> blogListForApproval() {
+		try {
+			log.debug("Starting of Method blogListForApproval");
+			Query query = sessionFactory.getCurrentSession().createQuery("FROM Blog WHERE approveStatus = 'P'");
+			log.debug("Starting of get BlogList");
+			@SuppressWarnings("unchecked")
+			List<Blog> list = query.list();
+			if(list==null || list.isEmpty()){
+				log.debug("No Blog's Approval are Pending");
+			}
+		log.debug("Ending of Method blogListForApproval");
+		return list;
+		}catch (HibernateException e) {
+			log.error("Error Occured in Method blogListForApproval :-"+e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+}
 
 
 

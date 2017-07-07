@@ -20,12 +20,15 @@ public class User extends basedomain{
 	@Id
 	//@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private String u_id;
+	private String u_name;
 	
+	public String getU_name() {
+		return u_name;
+	}
+	public void setU_name(String u_name) {
+		this.u_name = u_name;
+	}
 	//@NotBlank(message= "Enter your firstname please ")
-	private String u_firstname;
-	
-	//@NotBlank(message="please enter your last name")
-	private String u_lastname;
 	//@NotBlank(message="please enter your valid password")
 	//@Length(min=5, message= "password should have minimum 5 characters ")
 	private String u_password;
@@ -52,18 +55,6 @@ public class User extends basedomain{
 	}
 	public void setU_id(String u_id) {
 		this.u_id = u_id;
-	}
-	public String getU_firstname() {
-		return u_firstname;
-	}
-	public void setU_firstname(String u_firstname) {
-		this.u_firstname = u_firstname;
-	}
-	public String getU_lastname() {
-		return u_lastname;
-	}
-	public void setU_lastname(String u_lastname) {
-		this.u_lastname = u_lastname;
 	}
 	public long getU_contact() {
 		return u_contact;
@@ -111,5 +102,6 @@ public class User extends basedomain{
 	private char u_approvestatus;
 	private char is_online;
 	private String u_userRole;
+
 	
 }

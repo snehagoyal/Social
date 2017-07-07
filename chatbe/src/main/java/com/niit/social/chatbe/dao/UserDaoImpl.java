@@ -4,6 +4,7 @@ package com.niit.social.chatbe.dao;
 import java.util.List;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.niit.social.chatbe.model.Blog;
 import com.niit.social.chatbe.model.User;
 
 
@@ -27,7 +29,7 @@ public class UserDaoImpl implements UserDao{
 public boolean addUser(User u) {
 	try{
 		log.debug("Adduser");
-		u.setU_id(u.getU_firstname());
+		u.setU_id(u.getU_name());
 		Session s= sessionFactory.getCurrentSession();
 		s.save(u);
 		log.debug("user added successfully");
@@ -104,8 +106,13 @@ public List<User> getForApproval() {
 	return sessionFactory.getCurrentSession().createQuery("from User where u_approvestatus= 'P'").list();
 
 }
+public User userGetById(String u_id) {
+	
+		log.debug("Staring of Method getUserById with b_id :- "+u_id);
+		return (User) sessionFactory.getCurrentSession().createQuery("FROM User WHERE u_id = '"+u_id+"'");
+	
 
-
+}
 }
 
 

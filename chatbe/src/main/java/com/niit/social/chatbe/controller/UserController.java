@@ -79,7 +79,7 @@ if(user != null){
 	log.debug("**********User Exist With Given Credentials.**********");
 	
 	session.setAttribute("loggedInUser",user);
-	session.setAttribute("userName",user.getU_firstname()+' '+user.getU_lastname());
+	session.setAttribute("userName",user.getU_name());
 	session.setAttribute("loggedInUserID", user.getU_id());
 	userDao.setOnLine(user.getU_id());
 }else{
@@ -94,19 +94,19 @@ return new ResponseEntity<User>(user , HttpStatus.OK);
 	public ResponseEntity<User> approveUser(@PathVariable("u_id") String u_id,@PathVariable("u_approvestatus") String u_approvestatus){
 		log.debug("**********Starting of Method approveUser WITH USER_ID :-**********" + u_id);
 		System.out.println("try to approve user");
-/*			UserDetail user = userDetailDao.userGetById(userId);
+			User user = userDao.userGetById(u_id);
 		if(user == null){
-			log.debug("**********User Does not Exist with this ID :-"+userId+"**********");
-			user = new UserDetail();
+			log.debug("**********User Does not Exist with this ID :-"+u_id+"**********");
+			user = new User();
 			user.setErrorCode("404");
-			user.setErrorMessage("User Does not Exist with this ID :-"+userId);
-			return new ResponseEntity<UserDetail>(user , HttpStatus.NOT_FOUND);
+			user.setErrorMessage("User Does not Exist with this ID :-"+u_id);
+			return new ResponseEntity<User>(user , HttpStatus.NOT_FOUND);
 		}else{
-			user.setUserId(userId);*/
+			user.setU_id(u_id);
 			userDao.approveUser(u_id, u_approvestatus);
 			log.debug("**********User Approved Successfully WITH ID:- "+u_id+"**********");
 			return new ResponseEntity<User>(HttpStatus.OK);
-	//	}
+		}
 	}
 
 			

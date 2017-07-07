@@ -28,14 +28,15 @@ app.controller('JobController',[
                                     	 },
                                     	 function(errResponse){
                                     		 console.error("error occured during adding a job");
+                                    		 })
                                     		 
-                                    	 }
-                                    	 ),
+                                     };
                                     	  self.submit = function() 
                            				{
-                           					console.log('Saving job', self.job);
+                           					console.log('Saving new job', self.job);
                            					self.addjob(self.job);
                            				};
                            			
+                           			
                                      }
-                                     }	 ])
+                                     	 ])

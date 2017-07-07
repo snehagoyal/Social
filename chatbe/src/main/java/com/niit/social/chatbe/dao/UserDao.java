@@ -13,4 +13,6 @@ public interface UserDao {
 	public List<User>getForApproval();
 	public boolean approveUser(String id, String status);
 	public boolean setOnLine(String id);
+
+	public User userGetById(String u_id);
 }

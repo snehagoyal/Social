@@ -5,13 +5,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div ng-app="myApp" ng-controller= "JobController as ctrl" class="ng-scope">
+<div data-ng-app="myApp" data-ng-controller="JobController as ctrl" class="ng-scope">
 <form data-ng-submit="ctrl.submit()" method="post">
-
-
-
 <label>Job Form</label>
 <br><br>
+
 ID<input type="number" data-ng-model="ctrl.job.j_id" placeholder="Enter your ID"><br>
 
 Title<input type="text" data-ng-model="ctrl.job.j_title" placeholder="Enter your firstname"><br>
@@ -19,13 +17,16 @@ Description<input type="text" data-ng-model="ctrl.job.j_desc" placeholder="enter
 
 Years of Experience<input type="text" data-ng-model="ctrl.job.j_exp" placeholder="enter your password"><br>
 Location<input type="text" data-ng-model="ctrl.job.j_loctn"placeholder="enter your address"><br>
-<br>
-<input type="submit" value="job">
 
-
-
+<input type="submit" value="sub">
 </form>
 </div>
 
+
+
 </body>
+<script type="text/javascript" src="c_job/JobController.js"></script>
+
+<script type="text/javascript" src="c_job/JobService.js"></script>
+
 </html>
