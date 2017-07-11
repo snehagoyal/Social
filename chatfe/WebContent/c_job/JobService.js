@@ -14,14 +14,14 @@ app.factory('JobService',[
                         	return{
                        	   addjob: function(job){
                         		console.log("job job job");
-                        		  return $http.post(BASE_URL+'/Addjob/')
+                        		  return $http.post(BASE_URL+'/Addjob/',job)
                    			   .then(
                    					   function( response){
                    						   return response.data;
                    					   },
-                   					   function(errresponse){
+                   					   function(errResponse){
                    						   console.log("error while job");
-                   						   return$q.reject(errResponse);
+                   						   return $q.reject(errResponse);
                    					   }
                    					   );
                    			 },

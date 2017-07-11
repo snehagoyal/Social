@@ -22,15 +22,9 @@ private String b_ModifiedAt;
 private int b_dislike;
 private String b_CreatedAt;
 private int b_like;
-private String u_name;
+//private String u_name;
 
 
-	public String getU_name() {
-	return u_name;
-}
-	public void setU_name(String u_name) {
-		this.u_name = u_name;
-	}
 	public String getB_id() {
 	return b_id;
 }

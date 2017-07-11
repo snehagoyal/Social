@@ -27,9 +27,10 @@ app.controller('JobController',[
                                     		 self.job=d;
                                     	 },
                                     	 function(errResponse){
-                                    		 console.error("error occured during adding a job");
-                                    		 })
-                                    		 
+             			   					console.error('Error While adding jobbbb');
+             			   					return $q.reject(errResponse);
+             			   				}
+             			   		);	 
                                      };
                                     	  self.submit = function() 
                            				{

@@ -28,6 +28,7 @@ private SessionFactory sessionFactory;
 public boolean addBlog(Blog b){
 	try{
 	log.debug("method working");
+	b.setB_id(b.getB_title());
 	Session ss= sessionFactory.getCurrentSession();
 	ss.save(b);
 	log.debug("blog added");

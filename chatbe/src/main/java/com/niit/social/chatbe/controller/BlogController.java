@@ -53,9 +53,9 @@ if(blogDAO.getBlogById(b.getB_id(),"0") == null){
     String blogModifiedAt = (dateFormat2.format(date2));
     
 
-	User userName = (User) session.getAttribute("userName");
+	//User userName = (User) session.getAttribute("userName");
   //  b.setU_name(userName.getU_name());
-	b.setU_name(userName.getU_name());
+	//b.setU_name(userName.getU_name());
     b.setB_dislike(0);
     b.setB_like(0);
     b.setB_CreatedAt(blogCreatedAt);

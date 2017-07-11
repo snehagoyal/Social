@@ -14,13 +14,14 @@ import com.niit.social.chatbe.model.Event;
 @Transactional
 @Repository("eventDAO")
 public class EventDAOImpl implements EventDAO {
-	private static final Logger log = LoggerFactory.getLogger(UserDaoImpl.class);
+	private static final Logger log = LoggerFactory.getLogger(EventDAOImpl.class);
 	   
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	public boolean createevent(Event e) {
 		try{log.debug("start event");
+		e.setE_id(e.getE_title());
 		Session s= sessionFactory.getCurrentSession();
 		s.save(e);
 		return true;

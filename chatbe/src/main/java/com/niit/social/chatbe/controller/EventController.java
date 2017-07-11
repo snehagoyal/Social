@@ -17,7 +17,7 @@ import com.niit.social.chatbe.model.Event;
 
 @RestController
 public class EventController {
-	private static final Logger log = LoggerFactory.getLogger(UserDaoImpl.class);
+	private static final Logger log = LoggerFactory.getLogger(EventController.class);
 	
 	@Autowired
 	EventDAO eventDAO;
@@ -25,7 +25,7 @@ public class EventController {
 	@RequestMapping(value="/AnEvent/", method =RequestMethod.POST)
 	public ResponseEntity<Event> createEvent(@RequestBody Event e){
 		eventDAO.createevent(e);
-		return new ResponseEntity<Event>(HttpStatus.OK);
+		return new ResponseEntity<Event>(e, HttpStatus.OK);
 		
 	}
 

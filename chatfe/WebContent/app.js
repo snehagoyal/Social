@@ -6,11 +6,28 @@ var app = angular.module("myApp",["ngRoute"]);
 app.config(function($routeProvider){
 	$routeProvider
 	
-	.when('/blog',{
-		templateUrl : 'c_blog/blog.html',
+.when('/',{
+		
+		templateUrl : 'c_user/login.html',
+		controller  : 'UserController'
+		
+		
+	})
+	.when('/login',{
+		
+		templateUrl : 'c_user/login.html',
+		controller  : 'UserController'
+		
+		
+	})
+
+	
+	.when('/createblog',{
+		templateUrl : 'c_blog/createblog.html',
 		controller : 'BlogController'
 	})
-.when('/showblog',{
+
+	.when('/showblog',{
 		templateUrl : 'c_blog/showblog.html',
 		controller : 'BlogController'
 	})
@@ -27,13 +44,6 @@ app.config(function($routeProvider){
 	})
 
 	
-	.when('/login',{
-		
-		templateUrl : 'c_user/login.html',
-		controller  : 'UserController'
-		
-		
-	})
 	.when('/manageUsers',{
 		
 		templateUrl : 'c_user/manageUsers.html',

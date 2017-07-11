@@ -22,6 +22,7 @@ public class JobDAOImpl implements JobDAO {
 	public boolean jobadd(Job j) {
 		try{
 		log.debug("Save job");
+		j.setJ_id(j.getJ_title());
 		Session s= sessionFactory.getCurrentSession();
 		s.save(j);
 		log.debug("job added");

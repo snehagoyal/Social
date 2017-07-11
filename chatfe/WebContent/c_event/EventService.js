@@ -8,7 +8,7 @@ app.factory('EventService',[
            '$rootScope',
            function($http,$q,$rootScope){
         	   console.log("Event Service");
-        	   var BASE_URL='http://localhost:8169/chatbe'
+        	   var BASE_URL='http://localhost:8169/chatbe';
         		   return{
         		 
         		 	 

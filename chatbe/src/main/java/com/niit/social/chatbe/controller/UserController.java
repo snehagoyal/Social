@@ -87,22 +87,24 @@ if(user != null){
 	user.setErrorCode("404");
 	user.setErrorCode("Invaid Credentials...!!!Please Enter Valid Username OR Password.");
 }
-return new ResponseEntity<User>(user , HttpStatus.OK);
+return new ResponseEntity<User>(u , HttpStatus.OK);
 }		
 
 	@RequestMapping(value = "/ApproveUser/{u_id}/{u_approvestatus}", method = RequestMethod.GET)
 	public ResponseEntity<User> approveUser(@PathVariable("u_id") String u_id,@PathVariable("u_approvestatus") String u_approvestatus){
 		log.debug("**********Starting of Method approveUser WITH USER_ID :-**********" + u_id);
 		System.out.println("try to approve user");
-			User user = userDao.userGetById(u_id);
+	/*		User user = userDao.userGetById(u_id);
 		if(user == null){
 			log.debug("**********User Does not Exist with this ID :-"+u_id+"**********");
+			System.out.println("In if Approve user");
 			user = new User();
 			user.setErrorCode("404");
 			user.setErrorMessage("User Does not Exist with this ID :-"+u_id);
 			return new ResponseEntity<User>(user , HttpStatus.NOT_FOUND);
 		}else{
-			user.setU_id(u_id);
+			System.out.println("in else approve user");
+			user.setU_id(u_id);*/
 			userDao.approveUser(u_id, u_approvestatus);
 			log.debug("**********User Approved Successfully WITH ID:- "+u_id+"**********");
 			return new ResponseEntity<User>(HttpStatus.OK);
@@ -110,4 +112,3 @@ return new ResponseEntity<User>(user , HttpStatus.OK);
 	}
 
 			
-}

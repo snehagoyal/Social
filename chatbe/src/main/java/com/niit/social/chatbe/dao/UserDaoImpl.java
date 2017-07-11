@@ -45,7 +45,7 @@ public boolean addUser(User u) {
 public User isValidUser(String u_email, String u_password) {
 	try{
 		System.out.println("In try");
-		return	(User) sessionFactory.getCurrentSession().createQuery("from User where u_email='"+u_email+"' and u_password='"+ u_password+"' and u_approveStatus='A' and u_accountStatus='1'").uniqueResult();	
+		return	(User) sessionFactory.getCurrentSession().createQuery("from User where u_email='"+u_email+"' and u_password='"+ u_password+"' and u_approveStatus='A' and u_accountStatus='1' and is_online='1'").uniqueResult();	
 		}
 		catch(HibernateException h)
 		{
@@ -108,7 +108,7 @@ public List<User> getForApproval() {
 }
 public User userGetById(String u_id) {
 	
-		log.debug("Staring of Method getUserById with b_id :- "+u_id);
+		System.out.println("Staring of Method getUserById with b_id :- "+u_id);
 		return (User) sessionFactory.getCurrentSession().createQuery("FROM User WHERE u_id = '"+u_id+"'");
 	
 

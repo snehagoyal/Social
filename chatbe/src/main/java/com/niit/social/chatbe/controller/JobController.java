@@ -1,5 +1,7 @@
 package com.niit.social.chatbe.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,7 @@ import com.niit.social.chatbe.model.Job;
 import com.niit.social.chatbe.model.User;
 @RestController
 public class JobController {
-	private static final Logger log=LoggerFactory.getLogger("JobControler.class");
+	private static final Logger log=LoggerFactory.getLogger("JobController.class");
 	
 	@Autowired
 	JobDAO jobDAO;
@@ -27,9 +29,10 @@ public class JobController {
 	}
 	
 	@RequestMapping(value="/Addjob/", method= RequestMethod.POST)
-	public ResponseEntity<Job> jobadd(@RequestBody Job j){
+	public ResponseEntity<Job> jobadd(@RequestBody Job j, HttpSession session){
+		log.debug("trying to add job ");
 		jobDAO.jobadd(j);
-		 return new ResponseEntity<Job>(HttpStatus.OK);
+		 return new ResponseEntity<Job>(j, HttpStatus.OK);
 
 		
 	}

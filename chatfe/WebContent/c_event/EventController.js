@@ -21,9 +21,9 @@ app.controller('EventController',[
                                               
                                               self.events = [];
                                                    
-                                  	self.addEvent = function(blog){
+                                  	self.addEvent = function(event){
                                  		console.log("Create a new event");
-                                 		EventService.addevent(event)
+                                 		EventService.addEvent(event)
                                  			.then(function(d){
                                  				self.event = d;
                                  			},
@@ -32,13 +32,14 @@ app.controller('EventController',[
                                  				console.error('(console.error)Error While Creating New event.');
                                  			});
                                  	};
+                                 	  self.submit = function() 
+                       				{
+                       					console.log('Saving new event', self.event);
+                       					self.addEvent(self.event);
+                       				};
+                       			
 
-                                     self.submit = function() 
-                         				{
-                         					console.log('Saving new event', self.event);
-                         					self.addevent(self.event);
-                         				};
-                         				//this.reset();
+                                   	//this.reset();
                          			
                          			
                                      

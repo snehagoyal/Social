@@ -8,11 +8,12 @@
 
 <div class="container">
 	<div class="modal-content" ng-app="myApp" ng-controller="AdminController as ctrl">
+	
 		<div class="modal-header">
-		<div class="modal-title col-sm-6">
+		<div class="modal-title col-sm-6"><br><br><br><br>
 			<h4>LIST OF Pending USER'S to be Approved</h4>
 		</div>
-		
+		<br><br><br>
         
       	</div>
       <div class="modal-body">
@@ -33,7 +34,7 @@
 			<tr data-ng-repeat="user in ctrl.pendingUsers ">
 			
 				<td width="10%">{{user.u_id}}</td>
-				<td width="20%">{{user.u_firstname}} {{user.u_lastname}}</td>
+				<td width="20%">{{user.u_name}}</td>
 				<td width="30%">{{user.u_email}}</td>
 				<td width="10%">{{user.u_userRole}}</td>
 
