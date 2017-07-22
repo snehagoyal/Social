@@ -26,17 +26,60 @@ app.factory('BlogService',[
         			   
         		   },
         		   
+        		/*   getMyBlogList: function(){
+        			   return $http.post(BASE_URL+'/getMyBlogList/')
+        			   		.then(
+        			   				function(response){
+        			   					return response.data;
+        			   				},
+        			   				function(errResponse){
+        			   					console.error('Error While Fatching BlogList.');
+        			   					return $q.reject(errResponse);
+        			   				}
+        			   		);
+        			   
+        		   },
         		   
+        		   fetchAllComments: function(){
+        			   return $http.get(BASE_URL+'/BlogPages/getComments/')
+        			   		.then(
+        			   				function(response){
+        			   					return response.data;
+        			   				},
+        			   				function(errResponse){
+        			   					console.error('Error While Fatching Comments list.');
+        			   					return $q.reject(errResponse);
+        			   				}
+        			   		);
+        			   
+        		   },
+           		   
+        		   commentAdd: function(c_com,b_id){
+        			   return $http.get(BASE_URL+'/BlogPages/Comments/'+c_com+'/'+b_id)
+        			   		.then(
+        			   				function(response){
+        			   					return response.data;
+        			   				},
+        			   				function(errResponse){
+        			   					console.error('Error While commenting');
+        			   					return $q.reject(errResponse);
+        			   				}
+        			   		);
+        			   
+        		   },  */
         		   fetchAllBlogs: function(){
-        			   console.log("fetch all users");
-        			   return $http.post(BASE_URL+'ListAllUsersNotFriends')
-        			   .then(
-        					   function( response){
-        						   return response.data;
-        					   },
-        					   null
-        					   );
-        			 },
+        			   return $http.get(BASE_URL+'/BlogList/')
+        			   		.then(
+        			   				function(response){
+        			   					return response.data;
+        			   				},
+        			   				function(errResponse){
+        			   					console.error('Error While Fetching BlogList.');
+        			   					return $q.reject(errResponse);
+        			   				}
+        			   		);
+        			   
+        		   },
         			 
         	  
         	   createBlog: function(blog){
@@ -52,16 +95,24 @@ app.factory('BlogService',[
 			   					console.error('Error While Creating blog');
 			   					return $q.reject(errResponse);
 			   				});
-		  
-        		
-        	   
-        	   
-        	   
-
-        		},
+        	  
+        		 
+        	         		},
         		
         		
-        		
+        	/*	getBlog: function(b_id,b_status){
+     			   return $http.get(BASE_URL+'/GetBlogById/'+b_id+'/'+b_status)
+     			   		.then(
+     			   				function(response){
+     			   					return response.data;
+     			   				},
+     			   				function(errResponse){
+     			   					console.error('Error While Getting Blog By b_id :-'+b_id);
+     			   					return $q.reject(errResponse);
+     			   				}
+     			   		);
+     		   },
+     	   	*/
         		
         	}}
         	])

@@ -3,7 +3,6 @@ package com.niit.social.chatbe.dao;
 
 import java.util.List;
 
-import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -15,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.social.chatbe.model.Blog;
+import com.niit.social.chatbe.model.Comment;
 
 @Transactional
 @Repository("blogDAO")
@@ -40,8 +40,76 @@ public boolean addBlog(Blog b){
 		return false;
 	}
 }
-
 /*@Transactional
+public List<Blog> blogListByUserId(String u_id) {
+	try {
+		log.debug("Starting of Method blogListByUserId");
+		Query query = sessionFactory.getCurrentSession().createQuery("FROM Blog WHERE u_id = '"+u_id+"'");
+		log.debug("Starting of get BlogList");
+		@SuppressWarnings("unchecked")
+		List<Blog> list = query.list();
+		if(list==null || list.isEmpty()){
+			log.debug("No Blog's are Availible");
+		}
+	log.debug("Ending of Method blogListByUserId");
+	return list;
+	}catch (HibernateException e) {
+		log.error("Error Occured in Method blogListByUserId :-"+e.getMessage());
+		e.printStackTrace();
+		return null;
+	}
+}*/
+/*@Transactional
+public boolean updateBlog(Blog blog) {
+	try {
+		log.debug("Starting Method updateBlog.");
+			sessionFactory.getCurrentSession().update(blog);
+		log.debug("Ending Method updateBlog");
+		return true;
+	} catch (HibernateException e) {
+		log.error("Error Occured in Method updateBlog:-"+e.getMessage());
+		e.printStackTrace();
+		return false;
+	}
+}
+*/
+@Transactional
+public List<Blog> getAllBlogs() {
+	try {
+		System.out.println("Starting of Method getAllBlogs");
+		Query query = sessionFactory.getCurrentSession().createQuery("FROM Blog WHERE b_status = '1'");
+		log.debug("Starting of get BlogList");
+		@SuppressWarnings("unchecked")
+		List<Blog> list = query.list();
+		if(list==null || list.isEmpty()){
+			log.debug("No Blog's Are Available");
+		}
+	log.debug("Ending of Method getAllBlogs");
+	return list;
+	}catch (HibernateException e) {
+		log.error("Error Occured in Method getAllBlogs :-"+e.getMessage());
+		e.printStackTrace();
+		return null;
+	}
+}
+
+/*
+@Transactional
+public boolean removeBlog(String b_id) {
+	try {
+		log.debug("Starting Method removeBlog.");
+			sessionFactory.getCurrentSession().createQuery("Update Blog set b_status = 0 where b_id = '"+b_id+"'").executeUpdate();
+		log.debug("Blog removed with Id:-"+b_id);
+		log.debug("Ending Method removeBlog.");
+		return true;
+	} catch (HibernateException e) {
+		log.error("Error Occured in removeBlog with (id = '"+b_id+"') "+e.getMessage());
+		e.printStackTrace();
+		return false;
+	}
+}
+
+@Transactional
 public boolean bloglikes(String b_id) {
 	try {
 		log.debug("Starting Method forumlikes.");
@@ -76,7 +144,7 @@ public Blog getBlogById(String b_id, String b_status) {
 		Query query = sessionFactory.getCurrentSession().createQuery("FROM Blog WHERE b_id = '"+b_id+"' AND b_status = '"+b_status+"'");
 		@SuppressWarnings("unchecked")
 		List<Blog> blogList = query.list();
-		if(blogList != null && !blogList.isEmpty()){
+		if(blogList != null && blogList.isEmpty()){
 			log.debug("Record Found in method getBlogById with id ="+b_id);
 			return blogList.get(0);
 		}else{
@@ -120,7 +188,7 @@ public boolean approveBlog(String b_id, String b_approvestatus) {
 	public List<Blog> blogListForApproval() {
 		try {
 			log.debug("Starting of Method blogListForApproval");
-			Query query = sessionFactory.getCurrentSession().createQuery("FROM Blog WHERE approveStatus = 'P'");
+			Query query = sessionFactory.getCurrentSession().createQuery("FROM Blog WHERE b_approveStatus = 'P'");
 			log.debug("Starting of get BlogList");
 			@SuppressWarnings("unchecked")
 			List<Blog> list = query.list();
@@ -136,8 +204,65 @@ public boolean approveBlog(String b_id, String b_approvestatus) {
 		}
 }
 
+/*
+	@Transactional
+	public boolean addComment(Comment comment) {
+		try {
+			log.debug("Starting Method addComment");
+				sessionFactory.getCurrentSession().save(comment);
+			log.debug("Ending Method addComment");
+			return true;
+		} catch (HibernateException e) {
+			log.error("Error Occured in Method addComment:-"+e.getMessage());
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@Transactional
+	public List<Comment> commentsById(String b_id) {
+		try {
+			log.debug("Starting of Method commentsById");
+			Query query = sessionFactory.getCurrentSession().createQuery("FROM Comment WHERE b_id = '"+b_id+"'");
+			log.debug("Starting of get CommentList");
+			@SuppressWarnings("unchecked")
+			List<Comment> list = query.list();
+			if(list==null || list.isEmpty()){
+				log.debug("No Comment's Are Available");
+			}
+		log.debug("Ending of Method commentsById");
+		return list;
+		}catch (HibernateException e) {
+			log.error("Error Occured in Method commentsById :-"+e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 
+	
+		@Transactional
+		public List<Comment> getAllComments(){
+			try {
+				log.debug("Starting of Method getAllComments");
+				Query query = sessionFactory.getCurrentSession().createQuery("FROM Comment");
+				log.debug("Starting of get CommentList");
+				@SuppressWarnings("unchecked")
+				List<Comment> list = query.list();
+				if(list==null || list.isEmpty()){
+					log.debug("No Comment's Are Available");
+				}
+			log.debug("Ending of Method getAllComments");
+			return list;
+			}catch (HibernateException e) {
+				log.error("Error Occured in Method getAllComments :-"+e.getMessage());
+				e.printStackTrace();
+				return null;
+			}
+		}
+
+
+*/
 
  
 }

@@ -15,4 +15,8 @@ public interface UserDao {
 	public boolean setOnLine(String id);
 
 	public User userGetById(String u_id);
+
+	public void setOffLine(String u_name);
+	public boolean deleteUser(String u_name);
+	public boolean updateUser(User user);
 }

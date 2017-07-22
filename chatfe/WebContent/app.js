@@ -1,18 +1,11 @@
 /**
  * 
  */
-var app = angular.module("myApp",["ngRoute"]);
+var app = angular.module("myApp",["ngRoute","ngCookies"]);
 
 app.config(function($routeProvider){
 	$routeProvider
 	
-.when('/',{
-		
-		templateUrl : 'c_user/login.html',
-		controller  : 'UserController'
-		
-		
-	})
 	.when('/login',{
 		
 		templateUrl : 'c_user/login.html',
@@ -20,6 +13,9 @@ app.config(function($routeProvider){
 		
 		
 	})
+	
+
+	
 
 	
 	.when('/createblog',{
@@ -27,11 +23,7 @@ app.config(function($routeProvider){
 		controller : 'BlogController'
 	})
 
-	.when('/showblog',{
-		templateUrl : 'c_blog/showblog.html',
-		controller : 'BlogController'
-	})
-
+	
 	.when('/register',{
 	
 		templateUrl : 'c_user/register.html',

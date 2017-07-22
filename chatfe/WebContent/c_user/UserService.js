@@ -23,20 +23,18 @@ app.factory('UserService',[
         					   );
         			 },
         			 
-        			 authenticate: function(user){
-        				 console.log("user logged in");
-        				 return $http.post(BASE_URL+'/userlogin/',user)
-        				 .then(
-        						 function(response){
-        							 return response.data;
-        						 },
-        						 function(errResponse){
-        							 console.error("Error while logged in");
-        							 return $q.reject(errResponse);
-        						 }
-        						 )
-        				 
-        			 },
+        			 authenticate : function(user){
+          			   console.log("authemticate in service controller");
+          			   return $http.post(BASE_URL+'/Authentication/',user)
+          			   		.then(function(response){
+      			   				return response.data;
+              			   	},
+              			   	function(errResponse){
+              			   		console.error('Error While Authentication User.');
+              			   		return $q.reject(errResponse);
+              			   	});
+
+          		   },
         			 
         	  
         	   createUser: function(user){
@@ -71,7 +69,16 @@ app.factory('UserService',[
            				)
            	}	,   
         	   
-           	
+            logout : function(){
+     		   return $http.get(BASE_URL+'/Logout')
+     		   	.then(function(response){
+     		   				return response.data;
+     		   	},
+     		   	function(errResponse){
+     		   		console.error('Error While Logging Out');
+     		   		return $q.reject(errResponse);
+     		   	});
+     	   },
         		
         	}}
         	])

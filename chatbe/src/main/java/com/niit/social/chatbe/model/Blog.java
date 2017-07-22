@@ -16,6 +16,13 @@ public class Blog extends basedomain {
 
 @Id
 	private String b_id;
+private String u_id;
+public String getU_id() {
+	return u_id;
+}
+public void setU_id(String u_id) {
+	this.u_id = u_id;
+}
 //A= approve, p=pending , r=reject
 private char b_approvestatus;
 private String b_ModifiedAt;

@@ -57,6 +57,17 @@ public class UserController {
 			return new ResponseEntity<List<User>>(userslist,HttpStatus.OK);
 		}
 	}
+	@RequestMapping(value = "/Logout",method = RequestMethod.GET)
+	public ResponseEntity<User> logout(HttpSession session){
+		log.debug("Logout method");
+		String u_name = (String) session.getAttribute("loggedInUserID");
+		userDao.setOffLine(u_name);
+		session.invalidate();
+		log.debug("You Successfully Loggeddout");
+		return new ResponseEntity<User>( HttpStatus.OK);
+		
+	}
+	
 	@RequestMapping(value = "/PendingUsers/", method = RequestMethod.GET)
 	public ResponseEntity<List<User>> listPendingUsers(){
 		log.debug("**********Starting of Method listPendingUsers**********");
@@ -69,26 +80,26 @@ public class UserController {
 			return new ResponseEntity<List<User>>(userslist,HttpStatus.OK);
 		}
 	}
-	@RequestMapping(value="/userlogin/",method=RequestMethod.POST)
-	public ResponseEntity<User>login(@RequestBody User u, HttpSession session){
-		System.out.println("in authorization");
-		log.debug("trying to login");
-User user;
-user = userDao.isValidUser(u.getU_email(), u.getU_password());
-if(user != null){
-	log.debug("**********User Exist With Given Credentials.**********");
-	
-	session.setAttribute("loggedInUser",user);
-	session.setAttribute("userName",user.getU_name());
-	session.setAttribute("loggedInUserID", user.getU_id());
-	userDao.setOnLine(user.getU_id());
-}else{
-	user = new User();
-	user.setErrorCode("404");
-	user.setErrorCode("Invaid Credentials...!!!Please Enter Valid Username OR Password.");
-}
-return new ResponseEntity<User>(u , HttpStatus.OK);
-}		
+	@RequestMapping(value = "/Authentication/", method = RequestMethod.POST)
+	public ResponseEntity<User> authentication(@RequestBody User userDetail,HttpSession session){
+		System.out.println("***************************************"+userDetail.getU_email());
+		log.debug("**********Calling Method Authentication.**********");
+		User user;
+		
+		user = userDao.isValidUser(userDetail.getU_email(), userDetail.getU_password());
+		if(user != null){
+			log.debug("**********User Exist With Given Credentials.**********");
+			session.setAttribute("loggedInUser",user);
+			session.setAttribute("userName",user.getU_name());
+			session.setAttribute("loggedInUserID", user.getU_id());
+			userDao.setOnLine(user.getU_id());
+		}else{
+			user = new User();
+			user.setErrorCode("404");
+			user.setErrorMessage("Invaid Credentials...!!!Please Enter Valid Username OR Password.");
+		}
+		return new ResponseEntity<User>(user , HttpStatus.OK);
+	}		
 
 	@RequestMapping(value = "/ApproveUser/{u_id}/{u_approvestatus}", method = RequestMethod.GET)
 	public ResponseEntity<User> approveUser(@PathVariable("u_id") String u_id,@PathVariable("u_approvestatus") String u_approvestatus){
@@ -103,6 +114,7 @@ return new ResponseEntity<User>(u , HttpStatus.OK);
 			user.setErrorMessage("User Does not Exist with this ID :-"+u_id);
 			return new ResponseEntity<User>(user , HttpStatus.NOT_FOUND);
 		}else{
+		
 			System.out.println("in else approve user");
 			user.setU_id(u_id);*/
 			userDao.approveUser(u_id, u_approvestatus);

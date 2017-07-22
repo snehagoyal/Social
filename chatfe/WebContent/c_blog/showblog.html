@@ -1,262 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 </head>
 <body>
-
-<div class="container">
-
-	<div class="modal-content" ng-app='myApp'data-ng-controller="BlogController as ctrl">
-
-		<div class="modal-header">
-
-		<div class="modal-title col-sm-6"><br><br><br><br>
-
-			<h4 >LIST OF NEW BLOG'S </h4>
-
-		</div>
-
-		<div class="col-sm-6">
-
-				<input class="pull-right form-control" type="text"  placeholder="Enter Text for Search" />
-
-		</div>
-
-        
-
-      	</div>
-
-      <div class="modal-body">
-
-       <table class="table table-hover">
-
-		<thead>
-
-			<tr>
-
-				<th>ID</th>
-
-				<th>Title</th>
-
-				<th>Description</th>
-
-				<th>Posted on</th>
-
-				<th>Created By</th>
-
-				<th colspan="2">OPTIONS</th>
-
-			</tr>
-
-		</thead>
-
-		<tbody>
-
-			<tr data-ng-repeat="blog in ctrl.blogs | filter:{u_id : '!' + currentUser.u_id}">
-
-				<td width="10%">{{blog.b_id}}</td>
-
-				<td width="15%">{{blog.b_title}}</td>
-
-				<td width="30%">{{blog.b_desc}}</td>
-
-				<td width="15%">{{blog.b_CreatedAt}}</td>
-
-				<td width="20%" data-ng-repeat="user in ctrl.users | filter :{u_id : blog.u_id}">{{user.u_firstName}} {{user.u_lastName}}</td>
-
-				<td width="10%">
-
-				<button class="btn btn-primary" data-ng-click="ctrl.getSelectedapproveBlog(blog.b_id,'1')">View</button>
-
-				</td>
-
-			</tr>
-
-		</tbody>
-
-	</table>
-
-      </div>
-
- <!--  <div class="modal-footer" style="text-align: left;">
-
-        	<span>Total No. of Records = {{ctrl.myblogs.length}}</span>
-
-        	<ul class="pagination pull-right" style="margin: 0 0;">
-
-        		<li><button class="btn btn-default"
-
-					>
-
-					<span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
-
-				</button></li>
-
-        		<li>1</li>
-
-        		<li><button class="btn btn-default"
-
-					data-ng-disabled="curPage >= Brands.length/pageSize - 1"
-
-					data-ng-click="curPage = curPage+1">
-
-					<span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
-
-				</button></li>
-
-        	</ul>
-
-      </div>
-
-	 -->
-
-	</div>
-
-</div>
-
-
-
-
-
-<hr>
-
-
-
-<br><br>
-
-<div class="container">
-
-	 <div id="blog" class="row"> 
-
+<div class="container bootstrap snippet" ng-app="myApp" data-ng-controller="BlogController as ctrl">
+        	<div data-ng-repeat="blog in ctrl.blogs ">
+    	<div class="col-sm-8">
+        <div class="panel panel-white post panel-shadow">
+            <div class="post-heading" >
+                <div class="pull-left image">
+                    <img src="https://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                </div>
+                <div class="pull-left meta">
+                    <div class="title h5">
+                        <a href="#"><b>{{blog.b_title}}</b></a>
+                    </div>
+                    <h6>By-{{blog.u_id}}</h6>
+                    <h6 class="text-muted time" >{{blog.b_CreatedAt}}</h6>
+                </div>
+            </div> 
+            <div class="post-description"> 
+            	    <div class="title h5">
+            	    Description-
+                    </div>
+            	   
+                <p>{{blog.b_description}}</p>
+                <div class="stats">
+                    <a href="#" class="btn btn-default stat-item">
+                        <i class="fa fa-thumbs-up icon"></i>2
+                    </a>
+                    <a href="#" class="btn btn-default stat-item">
+                        <i class="fa fa-thumbs-down icon"></i>12
+                    </a>
+                </div>
                 
-
-                  <div class="col-sm-2 paddingTop20">
-
-            <nav class="nav-sidebar">
-
-                <ul class="nav">
-
-                    <li class="active"><a href="javascript:;"><span class="glyphicon glyphicon-star"></span> News</a></li>
-
-                    <li><a href="javascript:;">Latest news</a></li>
-
-                    <li><a href="javascript:;">Updates</a></li>
-
-                    <li><a href="javascript:;">Training</a></li>
-
-                    <li><a href="javascript:;">Nutrition</a></li>
-
-                    <li><a href="javascript:;">Proteins</a></li>
-
-                    <li><a href="javascript:;">Recipes</a></li>
-
-                    <li><a href="javascript:;">Challenge</a></li>
-
-                    <li class="nav-divider"></li>
-
-                    <li><a href="javascript:;"><i class="glyphicon glyphicon-off"></i> Sign in</a></li>
-
+            </div>
+            <div class="panel-footer">
+                <span class="label label-default">Welcome</span> <span class="label label-default">Updates</span> <span class="label label-default">July</span>
+            </div>
+            
+            <div class="post-footer">
+                <div class="input-group"> 
+                    <input class="form-control" data-ng-model="ctrl.com.c_com" placeholder="Add a comment" type="text">
+                    <span class="input-group-addon">
+                        <button data-ng-click="ctrl.AddComment(ctrl.com.c_com,blog.b_id)"><i class="fa fa-edit"></i></button>
+                    </span>
+                </div>
+        	<div data-ng-repeat="comment in ctrl.comments ">
+        	<div ng-if="comment.b_id==blog.b_id">
+                <ul class="comments-list">
+                    <li class="comment">
+                        <a class="pull-left" href="#">
+                            <img class="avatar" src="https://bootdey.com/img/Content/user_1.jpg" alt="avatar">
+                        </a>
+                        <div class="comment-body">
+                            <div class="comment-heading">
+                                <h4 class="user">{{comment.u_name}}</h4>
+                                <h5 class="time">{{comment.c_date}}</h5>
+                            </div>
+                            <p>{{comment.c_com}}</p>
+                        </div>
+                    </li>
                 </ul>
-
-            </nav>
-
-                      <div><h2 class="add">Place for your add!</h2></div>
-
+                </div>
+                </div>
+            </div>
         </div>
-
-                 <div class="col-md-10 blogShort">
-
-                     <h1>Title 1</h1>
-
-                     <img src="http://www.kaczmarek-photo.com/wp-content/uploads/2012/06/guinnes-150x150.jpg" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail">
-
-                     
-
-                         <em>This snippet use <a href="http://bootsnipp.com/snippets/featured/sexy-sidebar-navigation" target="_blank">Sexy Sidebar Navigation</a></em>
-
-                     <article><p>
-
-                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-
-                         ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only 
-
-                         five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release
-
-                         of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of
-
-                         Lorem Ipsum.    
-
-                         </p></article>
-
-                     <a class="btn btn-blog pull-right marginBottom10" href="http://bootsnipp.com/user/snippets/2RoQ">READ MORE</a> 
-
-                 </div>
-
-                  <div class="col-md-10 blogShort">
-
-                     <h1>Title 2</h1>
-
-                     <img src="http://www.kaczmarek-photo.com/wp-content/uploads/2012/06/DSC_4073-150x150.jpg" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail">
-
-                     <article><p>
-
-                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-
-                         ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only 
-
-                         five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release
-
-                         of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of
-
-                         Lorem Ipsum.
-
-                         </p></article>
-
-                     <a class="btn btn-blog pull-right marginBottom10" href="http://bootsnipp.com/user/snippets/2RoQ">READ MORE</a> 
-
-                 </div>
-
-                 
-
-                  <div class="col-md-10 blogShort">
-
-                     <h1>Title 3</h1>
-
-                     <img src="http://www.kaczmarek-photo.com/wp-content/uploads/2012/06/DSC_1681-150x150.jpg" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail">
-
-                     <article><p>
-
-                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-
-                         ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only 
-
-                         five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release
-
-                         of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of
-
-                         Lorem Ipsum.
-
-                         </p></article>
-
-                     <a class="btn btn-blog pull-right marginBottom10" href="http://bootsnipp.com/user/snippets/2RoQ">READ MORE</a> 
-
-                 </div>
-
-                 
-
-               <div class="col-md-12 gap10"></div>
-
-             </div>
-
+    </div>
+    </div>
 </div>
-
-
-
-
-
-
-
 </body>
 </html>

@@ -15,6 +15,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.niit.social.chatbe.model.Blog;
+import com.niit.social.chatbe.model.Comment;
 import com.niit.social.chatbe.model.Event;
 import com.niit.social.chatbe.model.Job;
 import com.niit.social.chatbe.model.User;
@@ -54,6 +55,7 @@ public class ApplicationContextConfig {
        sessionBuilder.addAnnotatedClass(Job.class);
       sessionBuilder.addAnnotatedClass(Blog.class);
       sessionBuilder.addAnnotatedClass(Event.class);
+      sessionBuilder.addAnnotatedClass(Comment.class);
      //  sessionBuilder.addAnnotatedClass(JobApplication.class);
        return sessionBuilder.buildSessionFactory();
     }

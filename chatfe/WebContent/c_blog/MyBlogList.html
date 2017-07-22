@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div data-ng-app="myApp" class="container">
+	<div class="modal-content" data-ng-controller="BlogController as ctrl">
+		<div class="modal-header">
+		<div class="modal-title col-sm-6">
+			<h4 >LIST OF NEW BLOG'S</h4>
+		</div>
+		<div class="col-sm-6">
+				<input class="pull-right form-control" type="text"  placeholder="Enter Text for Search" />
+		</div>
+        
+      	</div>
+      <div class="modal-body">
+       <table class="table table-hover">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Title</th>
+				<th>Description</th>
+				<th>Created At</th>
+				<th colspan="2">OPTIONS</th>
+			</tr>
+		</thead>
+		<tbody>
+		<tr data-ng-show="!ctrl.myblogs">
+			<td colspan="5">
+				<p><div class="alert-danger"><h2>Sorry..!!No Blog Found.</h2></div></p>
+			</td>
+		</tr>
+			<tr data-ng-repeat="blog in ctrl.myblogs | filter : {b_approvestatus : 'A'}">				
+				<td width="10%">{{blog.b_id}}</td>
+				<td width="20%">{{blog.b_title}}</td>
+				<td width="40%">{{blog.b_description}}</td>
+				<td width="20%">{{blog.b_CreatedAt}}</td>
+				<td width="10%">
+				<button class="btn btn-primary" data-ng-click="ctrl.getSelectedBlog(blog.b_id)">View</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+      </div>
+      <div class="modal-footer" style="text-align: left;">
+        	<span>Total No. of Records = {{ctrl.myblogs.length}}</span>
+        	<ul class="pagination pull-right" style="margin: 0 0;">
+        		<li><button class="btn btn-default"
+					>
+					<span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+				</button></li>
+        		<li>1</li>
+        		<li><button class="btn btn-default"
+					data-ng-disabled="curPage >= Brands.length/pageSize - 1"
+					data-ng-click="curPage = curPage+1">
+					<span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
+				</button></li>
+        	</ul>
+      </div>
+	
+	</div>
+</div>
+
+
+
+</body>
+</html>

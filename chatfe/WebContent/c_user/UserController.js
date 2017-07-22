@@ -5,11 +5,12 @@
 app.controller('UserController',['$scope',
                                  'UserService',
                                  '$location',
+                                 '$cookieStore',
                                  '$rootScope',
                                  '$http',
                                  
                                  
-                                function($scope, UserService, $location, $rootScope,$http){
+                                function($scope, UserService, $location,$cookieStore, $rootScope,$http){
                                 	 console.log("start the user controller");
                                      var self= this;
                                      self.user = {
@@ -50,38 +51,61 @@ app.controller('UserController',['$scope',
                                  				console.error('(console.error)Error While Creating New User.');
                                  			});
                                  	};
-                                 	self.authenticate= function (user){
-                                 		console.log("login started");
-                                 		UserService.authenticate(user)
-                                 	.then (function(d)
-                                 		{
-                                 		self.user= d;
-                                 		console.log("--->user.errorCode :- " + self.user.errorCode)
-                        				if(self.user.errorCode == "404"){
-                        					self.user.u_email = "";
-                        					self.user.u_password = "";
-                        				}else{
-                        					console.log("Valid Credentials. Navigating to Home Page.")
-                   			   				$rootScope.currentUser = {
-               			   						Name : self.user.u_Name,
-               			   						userId : self.user.u_id,
-               			   						userRole : self.user.u_userRole
-               			   				};
-                        					$http.defaults.headers.common['Authorization'] = 'Basic' + $rootScope.currentUser;
-                        					$cookieStore.put('currentUser',$rootScope.currentUser);
-                        					$location.path('/');
-                        				}
-                                 			},
-                                 			function(errResponse){
-                                 				console.error("error doing login user");
-                                 			}
-                                 	)
-                                 	}
+                                 	self.authenticate = function(user){
+                                		console.log("In Authenticate...");
+                                		UserService.authenticate(user)
+                                			.then(function(d){
+                                				self.user = d;
+                                				/*console.log("Get Data from Service"+self.user);
+                                				if($rootScope.currentUser){
+                                					console.log("Valid Credentials. Navigating to home Page.")
+                                					$location.path('/register');
+                                				}else{
+                                					console.log("Invalid Credentials. Staying On the Same Page.")
+                                				}*/
+                                				
+                                				console.log("--->user.errorCode :- " + self.user.errorCode)
+                                				if(self.user.errorCode == "404"){
+                                					self.user.emailId = "";
+                                					self.user.password = "";
+                                				}else{
+                                					console.log("Valid Credentials. Navigating to Home Page.")
+                           			   				$rootScope.currentUser = {
+                       			   						u_name : self.user.u_name,
+                       			   					
+                       			   						u_id : self.user.u_id,
+                       			   						u_userRole : self.user.u_userRole
+                       			   				};
+                                				$http.defaults.headers.common['Authorization'] = 'Basic' + $rootScope.currentUser;
+                                					$cookieStore.put('currentUser',$rootScope.currentUser);
+                                					$location.path('/');
+                                				}
+                                			},
+                                			function(errResponse){
+                                				console.error('Error While Authenticate Users.');
+                                			});
+                                	};
+                             /*    	self.logout = function(){
+                                		$rootScope.currentUser = {};
+                                		$cookieStore.put('currentUser');
+                                		$cookieStore.remove('currentUser');
+                                		console.log("Clear Cookies :- "+ $cookieStore.get('currentUser'));
+                                		UserService.logout()
+                                			.then(function(d){
+                                				console.error('Logout And Navigate IndexPage.');
+                                				$location.path('/');
+                                				console.error('Not Logout And Navigate IndexPage.');
+                                			},
+                                			function(errResponse){
+                                            	console.error('Error While Logout Users.');
+                                            });
+                                	
+                                	}*/
                                  	 self.login = function() 
                       				{
                       					console.log('login  user', self.user);
 
-                      					sself.authenticate(self.user);
+                      					self.authenticate(self.user);
                       				};
                       			
 

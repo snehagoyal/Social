@@ -6,12 +6,18 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="c_comment")
-public class comment {
+public class Comment {
 	
 	@Id
 	private String c_id;
 	private String c_com;
-	
+	private String u_name;
+	public String getU_name() {
+		return u_name;
+	}
+	public void setU_name(String u_name) {
+		this.u_name = u_name;
+	}
 	private String b_id;
 	private String c_date;
 	public String getC_id() {
@@ -44,3 +50,5 @@ public class comment {
 	
 
 }
+
+

@@ -59,7 +59,7 @@ app.controller('AdminController',[
 
     	
 self.SelectedapproveBlog =	function (b_id,b_approvestatus){
-    		console.log("->->approveBlog Blog with ID :-"+blogId+" "+b_approvestatus);
+    		console.log("->->approveBlog Blog with ID :-"+b_id+" "+b_approvestatus);
     		AdminService.approveBlog(b_id,b_approvestatus)
     			.then(
     					self.fetchAllPendingBlogs,
