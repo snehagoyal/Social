@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div data-ng-app="myApp" class="container" data-ng-controller="JobController as ctrl" class="ng-scope">
+<div class="col-sm-8" data-ng-show='ctrl.job.errorMessage'>
+						<div class="alert alert-danger">{{ctrl.job.errorMessage}}</div>
+					</div>
+		<form name="form" data-ng-submit="ctrl.submit()" role="form" method="post">
+			<div class="col-sm-8 modal-content">
+				<div class="modal-header">
+				<br><br><br><br>
+					<h4 class="modal-title text-center">Post a New Job</h4>
+				</div>
+				<div class="modal-body">
+					
+					<div class="form-group" data-ng-class="{'has-error':form.j_title.$dirty && form.j_title.$error.required}">
+						<input type="text" name="j_title" id="jobTitle"
+							class="form-control" data-ng-model="ctrl.job.j_title"
+							placeholder="Job Title" required="required" /> <span
+							class="help-block" data-ng-show="form.jobTitle.$dirty && form.jobTitle.$error.required">Job Title Is Required.</span>
+					</div>
+
+					<div class="form-group" data-ng-class="{'has-error':form.jobRole.$dirty && form.jobRole.$error.required}">
+						<input type="text" name="j_Role" id="jobRole"
+							class="form-control" data-ng-model="ctrl.job.j_Role"
+							placeholder="Job Role." required="required" /> 
+							<span class="help-block" data-ng-show="form.jobRole.$dirty && form.jobRole.$error.required">Job Role Is Required.</span>
+					</div>
+					
+					<div class="form-group" data-ng-class="{'has-error':form.jobDescription.$dirty && form.jobDescription.$error.required}">
+						<textarea rows="3" cols="3" name="j_desc"
+							id="jobDescription" class="form-control"
+							data-ng-model="ctrl.job.j_desc"
+							placeholder="Job Description" required="required"></textarea>
+							<span class="help-block" data-ng-show="form.jobDescription.$dirty && form.jobDescription.$error.required">Job Description Is Required.</span>
+					</div>
+
+					<div class="form-group" data-ng-class="{'has-error':form.jobLocation.$dirty && form.jobLocation.$error.required}">
+						<input type="text" name="j_location" id="jobLocation"
+							class="form-control" data-ng-model="ctrl.job.j_location"
+							placeholder="Job Location" required="required" /> <span
+							class="help-block" data-ng-show="form.jobLocation.$dirty && form.jobLocation.$error.required">Job Location Is Required.</span>
+					</div>
+					
+					<div class="form-group" data-ng-class="{'has-error':form.contact.$dirty && form.contact.$error.required}">
+						<input type="text" name="contact" id="contact"
+							class="form-control" data-ng-model="ctrl.job.contact"
+							placeholder="Contact Number." required="required" /> <span
+							class="help-block" data-ng-show="form.contact.$dirty && form.contact.$error.required">Contact Number Is Required.</span>
+					</div>
+					<div class="form-group" data-ng-class="{'has-error':form.email.$dirty && form.email.$error.required}">
+						<input type="text" name="email" id="email"
+							class="form-control" data-ng-model="ctrl.job.email"
+							placeholder="Email Id." required="required" /> <span
+							class="help-block" data-ng-show="form.email.$dirty && form.email.$error.required">Email Id Is Required.</span>
+					</div>
+				</div>
+				<div class="modal-footer form-actions">
+					<div class="col-sm-6">
+						<button type="submit" data-ng-disabled="form.$invalid || ctrl.dataLoading" class="btn btn-success btn-block">Post</button>
+					</div>
+					<div class="col-sm-6">
+						<button type="reset" class="btn btn-info btn-block">Reset</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+<!--    <label>Job Form</label>
+<br>
+
+<br><br><br><br>
+Title<input type="text" data-ng-model="ctrl.job.j_title" placeholder="Enter your firstname"><br>
+Description<input type="text" data-ng-model="ctrl.job.j_desc" placeholder="enter your lastname"><br>
+
+Years of Experience<input type="text" data-ng-model="ctrl.job.j_exp" placeholder="enter your password"><br>
+Location<input type="text" data-ng-model="ctrl.job.j_loctn"placeholder="enter your address"><br>
+
+<input type="submit" value="sub"> -->
+
+
+
+
+</body>
+<script type="text/javascript" src="c_job/JobController.js"></script>
+
+<script type="text/javascript" src="c_job/JobService.js"></script>
+
+</html>

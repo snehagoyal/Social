@@ -43,6 +43,37 @@ app.config(function($routeProvider){
 		
 		
 	})
+	.when('/managejobs',{
+		
+		templateUrl : 'c_job/managejobs.html',
+		controller  : 'JobController'
+		
+		
+	})
+	.when('/ListofJobs',{
+		
+		templateUrl : 'c_job/ListofJobs.html',
+		controller  : 'JobController'
+		
+		
+	})
+	
+	
+	.when('/MyAppliedJobs',{
+		
+		templateUrl : 'c_job/MyAppliedJobs.html',
+		controller  : 'JobController'
+		
+		
+	})
+	.when('/postedjob',{
+		
+		templateUrl : 'c_job/postedjob.html',
+		controller  : 'JobController'
+		
+		
+	})
+	
 	.when('/manageblogs',{
 		
 		templateUrl : 'c_blog/manageblogs.html',
@@ -51,10 +82,5 @@ app.config(function($routeProvider){
 		
 	})
 	
-	.when('/job',{
-		templateUrl : 'c_job/job.html',
-		controller  : 'JobController'
-		
-	})
 	
 })
